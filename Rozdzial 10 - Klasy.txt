@@ -1,0 +1,13 @@
+I. Prawdziwe zdania:
+b) Klasa to typ
+c) Składnikiem klasy może być obiekt typu double
+d) Składnikiem klasy może być funkcja
+e) Składnikiem klasy może być obiekt innej klasy
+
+II. Kapsułowanie (enkapsulacja) - to określenie na zamykanie w jednym dużym kontenerze wszystkich zmiennych lub funkcji właściwych jednej klasie, w celu łatwiejszego (szybszego) korzystania z nich w przyszłości. Zamiast definiować wszystko od nowa pojedynczo za każdym razem, możemy po prostu sięgnąć po wcześniej utworzoną kapsułę (klasę).
+
+III. Funkcje składowe klasy (metody) - mają zakres ważności danej klasy.
+
+IV. W klasie można utworzyć funkcję składową o takiej samej nazwie i takich samych argumentach, jak istniejąca funkcja globalna. Wtedy nastąpi zasłonięcie danej nazwy (przeładowanie nazwy funkcji występuje wyłącznie gdy funkcje występują w tym samym zakresie ważności).
+
+V. W klasie mogą istnieć dwie funkcje składowe (metody) o tej samej nazwie, ale pod warunkiem, że przyjmują różne argumenty (przeładowanie funkcji).

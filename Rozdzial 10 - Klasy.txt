@@ -1,3 +1,16 @@
+Dobre praktyki programisty:
+- każda klasa w osobnym pliku. A raczej w osobnych dwóch. Skraca to czas kompilacji, a także można z nich skorzystać także w innych programach.
+- dopóki w programie masz mniej niż tysiąc klas, można nad tym nieźle panować
+- na samej górze klasy dawać składniki public (te są najbardziej interesujące dla przyszłego użytkownika klasy)
+- niżej dawać składniki protected
+- na samym dole dawać składniki private (te interesują tylko tego, kto pracuje nad daną klasą)
+- aby łatwiej odróżniać klasy od obiektów, dobrze jest nazwy naszych klas zaczynać od dużej litery T (Type)
+- jeśli funkcja składowa klasy ma więcej niż dwie linijki, to lepiej definiować ją poza definicją klasy (void Tklasa::Tfunkcja () {} )
+- jeśli przesyłamy funkcji składowej adres obiektu tej klasy (this), dobrze, jeśli funkcja zagwarantuje mu nietykalność, np. void funkcja_skladowa( const Tklasa *adresObiektu ) - wywołanie tej funkcji:
+funkcja_skladowa( this )
+- najlepiej wymyślać inne nazwy na zmienne niż polegać na zasłanianiu nazw, bo łatwo się pozapominać i pogubić
+- nie starać się z obszaru klasy pracować z nazwami obiektów globalnych - lepiej przesłać go jako argument funkcji składowej i pracować na nim pod własną nazwą - w przeciwnym razie klasa będzie polegała na nazwach zaszytych na stałe w programie i może uniemożliwiać innym kompilację
+
 I. Prawdziwe zdania:
 b) Klasa to typ
 c) Składnikiem klasy może być obiekt typu double
@@ -11,3 +24,53 @@ III. Funkcje składowe klasy (metody) - mają zakres ważności danej klasy.
 IV. W klasie można utworzyć funkcję składową o takiej samej nazwie i takich samych argumentach, jak istniejąca funkcja globalna. Wtedy nastąpi zasłonięcie danej nazwy (przeładowanie nazwy funkcji występuje wyłącznie gdy funkcje występują w tym samym zakresie ważności).
 
 V. W klasie mogą istnieć dwie funkcje składowe (metody) o tej samej nazwie, ale pod warunkiem, że przyjmują różne argumenty (przeładowanie funkcji).
+
+VI. Składniki klasy z etykietą public są dostępne:
+- wewnątrz samej klasy
+- spoza zakresu klasy (włącznie z funkcjami)
+- zwykle takimi składnikami są jakieś wybrane funkcje składowe. To za ich pomocą dokonuje się z zewnątrz operacji na danych prywatnych.
+
+VII. Składniki klasy z etykietą private są dostępne:
+- tylko z wnętrza samej klasy
+- także dla funkcji zaprzyjaźnionych z daną klasą
+- tylko funkcje będące składnikami danej klasy mogą te dane odczytywać lub zapisywać
+- w przypadku funkcji oznacza to, że mogą one zostać wywołane tylko z innych funkcji składowych tej klasy
+- używany zwykle gdy zależy nam na ukryciu jakichś informacji
+
+VIII. Dostęp do składników klasy jest ustawiony standardowo na private, jeśli sami nie zdefiniujemy dostępu.
+
+IX. W danej klasie funkcja składowa public może wywołać funkcję składową private.
+
+X. Funkcja składowa klasy która ma ciało zdefiniowane poza definicją klasy - ma dostęp do składników private.
+
+XI. Nie ma różnicy pomiędzy definicją funkcji składowej klasy poza definicją klasy a wewnątrz niej, poza tym, że dla kompilatora ta wewnątrz klasy jest automatycznie traktowana jako funkcja inline.
+Jeśli chcemy, aby funkcja zdefiniowana poza definicją klasy była również inline, to można użyć przedrostka inline.
+
+XII. Metoda klasy - to inna nazwa na funkcję składową klasy (member function). Pochodzi z czasów innych, dawniejszych obiektowych języków programowania.
+
+XIII. Wskaźnik this - wewnątrz funkcji składowej danej klasy, wskaźnik "this" pokazuje na ten jeden konkretny obiekt, na rzecz którego funkcja składowa ma zostać wykonana. Aby uprościć pisanie funkcji w C++, jest to zrobione niejawnie za nas. Można go również pisać, nie będzie to błędem.
+Zwykły wskaźnik "this" jest typu klasy, do obiektów której się odnosi.
+
+XIV. Odnoszenie się do obiektu globalnego o takiej samej nazwie z wewnątrz klasy - można to zrobić za pomocą operatora zakresu ::
+Na przykład do zmiennej o nazwie temperatura można się odnieść przy pomocy ::temperatura . (ale lepiej tego nie robić)
+
+XV. W funkcji składowej klasy jest blok if, w nim obiekt nnn, identyczny co składnik klasy nnn i co obiekt globalny nnn 
+a) jest to zasłanianie nazwy, a nie przeładowanie
+b) odniesienie się do obiektu globalnego z zakresu lokalnego if - robimy to przy pomocy operatora ::nnn
+c) odniesienie się do składnika klasy z zakresu lokalnego - robimy to przy pomocy nazwy klasy z operatorem zasięgu Tklasa::nnn 
+d) odniesienie się do lokalnego obiektu z zakresu if - robimy to przy pomocy zwykłej nazwy nnn
+
+XVI. Uwaga! Nazwa obiektu może również zasłonić nazwę funkcji.
+
+XVII. Uwaga! Nazwa funkcji może również zasłonić nazwę obiektu.
+
+XVIII. Klasa A, funkcja składowa fff. Może nastąpić przeładowanie nazwy tej funkcji składowej wewnątrz klasy. Nawet jeśli argumenty pasują do funkcji globalnej, to jeśli wywołamy przeładowaną funkcję składową fff, będzie to zawsze funkcja istniejąca wewnątrz klasy (ponieważ funkcja globalna jest zasłonięta).
+
+XIX. Strażnik nagłówka - 
+#ifndef Tklasa.h
+#define Tklasa.h
+/* program */
+#endif
+Chroni użytkownika przed omyłkowym wstawieniem tego pliku nagłówkowego dwukrotnie.
+
+XX. Każda klasa w dwóch plikach: polega na tym, że w pliku nagłówkowym Tklasa.h są same deklaracje i składniki klasy (zmienne) i ew. funkcje inline, a w pliku Tklasa.cpp definicje funkcji składowych (nie-inline).

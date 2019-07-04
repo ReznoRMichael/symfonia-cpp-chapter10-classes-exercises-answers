@@ -120,3 +120,41 @@ XXVIII. W definicji składnika statycznego klasy nie występuje słowo static. J
 XXIX. Składnik nie-statyczny typu int o nazwie sn. Składnik statyczny typu int o nazwie ss.
 a) Pełna nazwa typu składnika sn = Tklasa::int;
 b) Pełna nazwa typu składnika ss = int;
+
+
+Składowe funkcje statyczne.
+- Można się dzięki nim odnosić do całej klasy, do której należy, nie tylko do jednego obiektu ( Tklasa::funkcja(); )
+- Można dzięki nim z zewnątrz odnosić się do składników private danej klasy (niemożliwe przy zwykłych obiektach).
+- Można ją wywołać nawet wtedy, kiedy nie istnieje żaden obiekt danej klasy
+- Takie funkcje nie zawierają wskaźnika this. Można w nich pracować tylko na danych statycznych (chyba że podamy jeden konkretny obiekt np. obiekt1.skladnik lub wskaznik->skladnik. )
+
+XXXIII. Mamy klasę, ale jeszcze nie zdefiniowaliśmy ani jednego jej obiektu.
+W statycznej funkcji składowej klasy możemy:
+a) pracować ze statycznymi publicznymi składnikami tej klasy
+b) pracować ze statycznymi prywatnymi składnikami tej klasy
+
+XXXIV. Jeśli jeszcze nie istnieje żaden obiekt danej klasy, to składową funkcję statyczną możemy wywołać poprzez Tklasa::funkcja();
+
+XXXV. W statycznych funkcjach składowych klasy nie istnieje wskaźnik this.
+
+XXXVI. Statyczną funkcję składową można wywołać również na rzecz jakiegoś obiektu jej klasy.
+
+XXXVII. Funkcja składowa z przydomkiem const.
+- Taka funkcja obiecuje, że nie będzie moodyfikować danych składowych jakiegoś obiektu.
+a) Specyfikator const umieszcza się na końcu funkcji, tuż przed średnikiem (za nawiasami)
+b) Specyfikator const powtarza się również w tym samym miejscu, jeśli funkcja jest zdefiniowana poza ciałem klasy.
+
+XXXVIII. Funkcję składową const można wywołać na rzecz stałego obiektu klasy.
+
+XXXIX. Funkcję składową const można wywołać na rzecz nie-stałego obiektu tej klasy.
+
+XL. Funkcji składowej nie-const nie można wywołać na rzecz stałego obiektu klasy.
+
+XLI. Funkcję składową nie-const można wywołać na rzecz nie-stałego obiektu klasy.
+
+XLII. Dla dociekliwych.
+a) Jaki jest typ wskaźnika this w funkcji składowej const? = const Tklasa *
+b) Jaki jest typ wskaźnika this w funkcji składowej volatile? = volatile Tklasa *
+c) Jaki jest typ wskaźnika this w funkcji składowej const volatile? = const volatile Tklasa *
+
+XLIII. Konstruktor bez przydomka const może pracować na rzecz stałego obiektu swojej klasy.

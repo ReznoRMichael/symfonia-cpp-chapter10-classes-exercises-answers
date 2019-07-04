@@ -14,6 +14,8 @@ Learning C++. Doing all exercises and answering all questions from Chapter 10 of
 
 ## Things to go back after gaining more knowledge
 
+* 30/XXX — 32/XXXII = advanced paragraph
+
 ## Contact
 
 [ReznoRMichael](https://github.com/ReznoRMichael)

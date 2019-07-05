@@ -157,4 +157,10 @@ a) Jaki jest typ wskaźnika this w funkcji składowej const? = const Tklasa *
 b) Jaki jest typ wskaźnika this w funkcji składowej volatile? = volatile Tklasa *
 c) Jaki jest typ wskaźnika this w funkcji składowej const volatile? = const volatile Tklasa *
 
-XLIII. Konstruktor bez przydomka const może pracować na rzecz stałego obiektu swojej klasy.
+XLIII. Konstruktor bez przydomka const może pracować na rzecz stałego obiektu swojej klasy. Inaczej nie mógłby pracować na składnikach swojej własnej klasy.
+
+XLIV. Przydomek mutable = nie może być zastosowany do obiektu globalnego.
+
+XLV. Przydomek mutable w obiektach klasy, które nie są stworzone jako stałe, nie ma żadnego dodatkowego działania - po prostu obiekt zwykły nie jest zamrażany.
+
+XLVI. Przydomek mutable w stałym obiekcie klasy pozwala wyjątkowo na zmianę wartości tego akurat składnika obiektu nawet przez funkcję const. Tworzy dla tego składnika jak gdyby wyjątek od reguły.
